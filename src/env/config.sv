@@ -17,7 +17,7 @@ class Config;
    constraint c_nCells_valid
      {nCells > 0; }
    constraint c_nCells_reasonable
-     {nCells < 2000; }
+     {nCells < 500; }
 
    rand bit in_use_Rx[];	// Input / output channel enabled
    constraint c_in_use_valid
