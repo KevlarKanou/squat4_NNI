@@ -14,13 +14,19 @@ run:
 	./simv -l simv.log +ntb_random_seed=$(seed)
 
 compile:
-	vcs -full64 -l vcs.log -sverilog -kdb +lint=TFIPC-L -debug_access+all $(SVTB) $(RTL) $(SVCM) +vcs+vcdpluson -lca
+	vcs -full64 -l vcs.log -sverilog -kdb +lint=TFIPC-L -debug_access+all $(SVTB) $(RTL) $(SVCM) +vcs+vcdpluson -lca -fsdb
 
 verdi:
 	verdi -ssf novas.fsdb -undockWin -nologo &
 
 dve:
 	dve -vpd vcdplus.vpd &
+
+cov:
+	dve -covdir simv.vdb -full64 &
+
+urg:
+	urg -full64 -dir simv.vdb
 
 verdi_debug:
 	./simv -l simv.log -gui=verdi +ntb_random_seed=$(seed)
@@ -32,7 +38,7 @@ debug:
 # 	cp -f ../../solutions/$(LAB_DIR)/*.sv .
 
 clean:
-	rm -rf simv* csrc* *.tmp *.vpd *.key *.log *hdrs.h *.fsdb verdiLog elabcomLog novas.* *.dat DVEfiles
+	rm -rf simv* csrc* *.tmp *.vpd *.key *.log *hdrs.h *.fsdb verdiLog elabcomLog novas.* *.dat DVEfiles urgReport vdCovLog
 
 # nuke: clean
 # 	rm -rf *.v* *.sv include .*.lock .*.old DVE* *.tcl *.h *.rc *.ses *.ses.* *.dat
@@ -54,6 +60,8 @@ help:
 	@echo  " verdi      => Run verdi in post-processing mode.          "
 	@echo  " verdi_gui  => Run simulation interactively with verdi                  "
 	@echo  "               All verdi targets must have Verdi installed.          "
+	@echo  " cov	    => Analyze coverage             							"
+	@echo  " urg	    => Report coverage result             						"
 	@echo  "                                                                       "
 	@echo  " debug      => Runs simulation interactively with dve.                  "
 	@echo  " clean      => Remove all intermediate simv and log files.             "
