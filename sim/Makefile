@@ -3,7 +3,7 @@
 RTL= ../src/rtl/hec_cal.v ../src/rtl/LookupTable.v ../src/rtl/utopia1_atm_rx.v ../src/rtl/utopia1_atm_tx.v ../src/rtl/FwdLkp.v ../src/rtl/arbitor.v ../src/rtl/squat4_NNI.v
 SVTB = ../src/tb/top.sv ../src/tb/cpu_ifc.sv ../src/tb/Utopia.sv
 SVCM = ../src/env/test.sv ../src/env/environment.sv ../src/env/config.sv ../src/env/generator.sv ../src/env/driver.sv ../src/env/monitor.sv ../src/env/scoreboard.sv ../src/env/coverage.sv
-seed = 123456
+# seed = 123456
 seed = $(shell date +%s)
 
 default: test 
