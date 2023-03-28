@@ -13,3 +13,5 @@ sim/novas.*
 sim/*.dat 
 sim/DVEfiles
 sim/stack.info.*
+sim/urgReport
+sim/vdCovLog
