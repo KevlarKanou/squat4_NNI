@@ -25,7 +25,10 @@ class Coverage;
    covergroup CG_Forward;
 
       x_cp: coverpoint src;
-      y_cp: coverpoint fwd;
+      y_cp: coverpoint fwd{
+         bins fwd[] = {[1:15]}; // Ignore fwd==0
+	      option.weight = 0;
+      }
       x_y_cross : cross x_cp, y_cp{
          ignore_bins ignore_fwd = x_y_cross with (((y_cp >> x_cp) & 1) == 0);
          // Receiving data on a port indicates that fwd is 1 on the bit corresponding to that port.
@@ -52,7 +55,7 @@ class Coverage;
       $display("###################################################################################");
       $display("@%0t: Coverage: src=%d. FWD=%b. Coverage = %3.2f", $time, src, fwd, coverage_result);
       $display("###################################################################################");
-      if(coverage_result > 80) begin
+      if(coverage_result == 100) begin
          ->this.cov_done ;
          $display("!!!!!!!!!!!!!!!!!!! coverage done !!!!!!!!!!!!!!!!!!!!!!!!!!!");
       end        	 
