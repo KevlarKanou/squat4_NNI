@@ -5,7 +5,7 @@ module squat4_NNI (
 
 
         input   wire               BusMode               ,
-        input   wire   [11:0]      Addr                  ,
+        input   wire   [7:0]       Addr                  ,
         input   wire               Sel                   ,
         input   wire   [15:0]      DataIn                ,
         input   wire               Rd_DS                 ,

@@ -22,7 +22,7 @@ input           clk        ;
 input           rst_n      ;
 			  
 input           BusMode    ; 
-input  [11:0]   Addr       ;
+input  [7:0]    Addr       ;
 input           Sel        ;
 input  [15:0]   DataIn     ; 
 input           Rd_DS      ; 
@@ -45,7 +45,7 @@ output [15:0]   fwd_data   ;
   wire          host_rden  = BusMode & ({Sel, Rd_DS, Wr_RW} == ReadCycle ) ;
 			    
   wire          Rdy_Dtack  = (host_wren || host_rden) ? 1'b0 : 1'b1 ;
-  wire  [7:0]   host_addr  = Addr[7:0]  ;
+  wire  [7:0]   host_addr  = Addr       ;
   wire  [15:0]  host_wdata = DataIn     ;
   wire  [15:0]  host_rdata              ;
   assign        DataOut    = host_rdata ;
