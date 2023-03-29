@@ -49,7 +49,8 @@ typedef union packed {
 */
 typedef struct packed {
   bit [`TxPorts-1:0] FWD;
-  bit [11:0] VPI;
+  bit [3:0] GFC;
+  bit [7:0] VPI;
 } CellCfgType;
 
 `endif // _INCL_DEFINITIONS
